@@ -40,10 +40,12 @@ public with sharing class TriggerTest {
                 accountTypeProspect.add(new Account(Name = 'Test Account ' + i));
             } else {
                 accountTypeNotChange.add(new Account(Name = 'Test Account ' + i, Type = 'Customer'));
-            }
-            
+            }            
         }
+        insert accountTypeProspect;
+        insert accountTypeNotChange;
         
+        System.debug('accountTypeProspect:= '+ accountTypeProspect);
         // Perform the test
         Test.startTest();
         Database.DMLOptions dml = new Database.DMLOptions(); 

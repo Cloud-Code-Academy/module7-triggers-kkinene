@@ -45,6 +45,7 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
             List<Contact> createContacts = new List<Contact>();
             for (Account tempAcc : Trigger.new) {
                 if (tempAcc.Name != null) {
+                    //Understand that the only reason this works is that the creation is on a different object
                     // Create a Contact for each newly inserted Account
                     Contact tempContact = new Contact(
                         FirstName = tempAcc.Name,

@@ -23,21 +23,7 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
 
         when BEFORE_UPDATE{
             
-            /* 4. Create a contact for each account inserted.
-            list <Contact> createConts = new list <Contact>();
-            Contact tempCont = new Contact(); // According to ChatGpt this should be in the loop
-            for(Account tempAcct: Trigger.new){
-                if(tempAcct.Name!= null){
-                    tempCont.FirstName = tempAcct.Name;
-                    tempCont.LastName = tempAcct.Name.substring(0)+'_lastname';
-                    tempCont.AccountId=tempAcct.Id;
-                    tempCont.Email = 'jdummyrec@email.com';
-                    createConts.add(tempCont);
-                }                
-            }    
-
-            insert createConts;  
-            */
+            
 
         }
 

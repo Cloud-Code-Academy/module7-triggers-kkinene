@@ -45,7 +45,6 @@ public with sharing class TriggerTest {
         insert accountTypeProspect;
         insert accountTypeNotChange;
         
-        System.debug('accountTypeProspect:= '+ accountTypeProspect);
         // Perform the test
         Test.startTest();
         Database.DMLOptions dml = new Database.DMLOptions(); 

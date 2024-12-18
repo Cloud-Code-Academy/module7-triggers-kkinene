@@ -3,7 +3,11 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
     switch on Trigger.OperationType {
         when  BEFORE_INSERT {
             for(Account tempAcc: Trigger.new){
-                if(tempAcc.Type == null){
+                if(tempAcc.Type == null && 
+                   String.isNotBlank(tempAcc.Phone) && 
+                   String.isNotBlank(tempAcc.Website) && 
+                   String.isNotBlank(tempAcc.Fax)){
+
                     tempAcc.Type = 'Prospect';
                     tempAcc.Rating = 'Hot';                    
                 }

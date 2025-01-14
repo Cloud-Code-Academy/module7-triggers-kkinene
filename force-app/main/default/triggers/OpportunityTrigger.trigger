@@ -2,7 +2,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
     switch on Trigger.OperationType {
         when  BEFORE_DELETE {
             for(Opportunity deletedOpp: Trigger.old){
-                if(deletedOpp.StageName == 'Closed Won'){
+                if(deletedOpp.StageName == 'Closed Won' && deletedOpp.Industry =='Banking'){
                     deletedOpp.addError('Cannot delete closed opportunity for a banking account that is won');                 
                 }              
             }           
@@ -42,14 +42,7 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
 
         }
 
-        when AFTER_INSERT{
-            
-
-        }
-
-        when AFTER_UPDATE{
-                       
-        }
+        
     }
 
 }

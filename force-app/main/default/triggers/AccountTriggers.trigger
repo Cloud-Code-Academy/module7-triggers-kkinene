@@ -16,6 +16,7 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
                 /*if (tempAcc.ShippingStreet != null || tempAcc.ShippingCity != null || 
                     tempAcc.ShippingState != null || tempAcc.ShippingPostalCode != null || 
                     tempAcc.ShippingCountry != null) */
+                
                 tempAcc.BillingStreet = tempAcc.ShippingStreet;
                 tempAcc.BillingCity = tempAcc.ShippingCity;
                 tempAcc.BillingState = tempAcc.ShippingState;
@@ -25,11 +26,7 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
             }
         }
 
-        when BEFORE_UPDATE{
-            
-            
-
-        }
+        
 
         when AFTER_INSERT{
             List<Contact> createContacts = new List<Contact>();
@@ -54,8 +51,6 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
 
         }
 
-        when AFTER_UPDATE{
-            
-        }
+       
     }
 }

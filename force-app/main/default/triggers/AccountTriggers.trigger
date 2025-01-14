@@ -11,17 +11,27 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
                 
 
                 // Copy Shipping Address to Billing Address if Shipping is populated
-                if (tempAcc.ShippingStreet != null && tempAcc.ShippingCity != null &&
-                    tempAcc.ShippingState != null && tempAcc.ShippingPostalCode != null && 
-                    tempAcc.ShippingCountry != null) {
+                if (tempAcc.ShippingStreet != null ) {
                 
                     tempAcc.BillingStreet = tempAcc.ShippingStreet;
-                    tempAcc.BillingCity = tempAcc.ShippingCity;
-                    tempAcc.BillingState = tempAcc.ShippingState;
+                }
+
+                if (tempAcc.ShippingCity != null) {
+                
+                    tempAcc.BillingCity = tempAcc.ShippingCity;                    
+                }
+                if (tempAcc.ShippingState != null) {
+                
+                    tempAcc.BillingState = tempAcc.ShippingState;                   
+                }
+                if (tempAcc.ShippingPostalCode != null) {
+                
                     tempAcc.BillingPostalCode = tempAcc.ShippingPostalCode;
+                    
+                }
+                if (tempAcc.ShippingCountry != null) {
                     tempAcc.BillingCountry = tempAcc.ShippingCountry;
                 }
-                
             }
         }
 

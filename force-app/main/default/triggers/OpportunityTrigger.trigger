@@ -53,7 +53,13 @@ trigger OpportunityTrigger on Opportunity (before insert, before update, after i
             // Assign the Primary_Contact__c field on the Opportunity
             for (Opportunity opp : Trigger.new) {
                 if (accountToCEOContactMap.containsKey(opp.AccountId)) {
-                    opp.Primary_Contact__c = accountToCEOContactMap.get(opp.AccountId).Id;
+
+                    //Null check on contact value
+                    Contact ceoContact = accountToCEOContactMap.get(opp.AccountId);
+                    if (ceoContact != null) {
+                        opp.Primary_Contact__c = ceoContact.Id;
+                    }
+                    
                 }
             }          
 

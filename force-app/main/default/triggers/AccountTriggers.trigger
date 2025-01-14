@@ -3,25 +3,24 @@ trigger AccountTriggers on Account (before insert, before update, after insert, 
     switch on Trigger.OperationType {
         when  BEFORE_INSERT {
             for(Account tempAcc: Trigger.new){
-                if(tempAcc.Type == null && 
-                   String.isNotBlank(tempAcc.Phone) && 
-                   String.isNotBlank(tempAcc.Website) && 
-                   String.isNotBlank(tempAcc.Fax)){
-
+                
+                if(String.isBlank(tempAcc.Type)){
                     tempAcc.Type = 'Prospect';
                     tempAcc.Rating = 'Hot';                    
                 }
+                
 
                 // Copy Shipping Address to Billing Address if Shipping is populated
-                /*if (tempAcc.ShippingStreet != null || tempAcc.ShippingCity != null || 
-                    tempAcc.ShippingState != null || tempAcc.ShippingPostalCode != null || 
-                    tempAcc.ShippingCountry != null) */
+                if (tempAcc.ShippingStreet != null && tempAcc.ShippingCity != null &&
+                    tempAcc.ShippingState != null && tempAcc.ShippingPostalCode != null && 
+                    tempAcc.ShippingCountry != null) {
                 
-                tempAcc.BillingStreet = tempAcc.ShippingStreet;
-                tempAcc.BillingCity = tempAcc.ShippingCity;
-                tempAcc.BillingState = tempAcc.ShippingState;
-                tempAcc.BillingPostalCode = tempAcc.ShippingPostalCode;
-                tempAcc.BillingCountry = tempAcc.ShippingCountry;
+                    tempAcc.BillingStreet = tempAcc.ShippingStreet;
+                    tempAcc.BillingCity = tempAcc.ShippingCity;
+                    tempAcc.BillingState = tempAcc.ShippingState;
+                    tempAcc.BillingPostalCode = tempAcc.ShippingPostalCode;
+                    tempAcc.BillingCountry = tempAcc.ShippingCountry;
+                }
                 
             }
         }
